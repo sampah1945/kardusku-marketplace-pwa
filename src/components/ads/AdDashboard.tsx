@@ -41,28 +41,29 @@ const AdDashboard = () => {
         .from('cardboard_ads')
         .select(`
           *,
-          cardboard_ad_images!inner(image_url)
+          cardboard_ad_images(image_url)
         `)
         .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
 
-      // Group images by ad
-      const adsWithImages = data.reduce((acc: Ad[], ad) => {
-        const existingAd = acc.find(a => a.id === ad.id);
-        if (existingAd) {
-          existingAd.images.push({ image_url: ad.cardboard_ad_images.image_url });
-        } else {
-          acc.push({
-            ...ad,
-            images: ad.cardboard_ad_images ? [{ image_url: ad.cardboard_ad_images.image_url }] : []
-          });
-        }
-        return acc;
-      }, []);
+      // Transform data to match Ad interface
+      const transformedAds: Ad[] = data.map(ad => ({
+        id: ad.id,
+        weight: ad.weight,
+        cardboard_type: ad.cardboard_type,
+        description: ad.description || '',
+        location_address: ad.location_address,
+        contact_phone: ad.contact_phone,
+        contact_preferred_time: ad.contact_preferred_time || '',
+        status: ad.status as 'active' | 'inactive' | 'sold',
+        created_at: ad.created_at,
+        expires_at: ad.expires_at,
+        images: ad.cardboard_ad_images || []
+      }));
 
-      setAds(adsWithImages);
+      setAds(transformedAds);
     } catch (error) {
       console.error('Error fetching ads:', error);
       toast({
@@ -185,7 +186,7 @@ const AdDashboard = () => {
               <CardContent className="pt-6">
                 <div className="flex gap-4">
                   {/* Image */}
-                  {ad.images[0] && (
+                  {ad.images.length > 0 && (
                     <div className="flex-shrink-0">
                       <img
                         src={ad.images[0].image_url}

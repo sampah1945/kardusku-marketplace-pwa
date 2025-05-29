@@ -5,7 +5,7 @@ import MapPlaceholder from './MapPlaceholder';
 import CardboardListings from './CardboardListings';
 
 interface Listing {
-  id: number;
+  id: string;
   title: string;
   location: string;
   distance: string;
@@ -13,6 +13,12 @@ interface Listing {
   category: string;
   date: string;
   imageUrl: string;
+  description?: string;
+  contactInfo?: {
+    phone: string;
+    preferredTime?: string;
+  };
+  cardboardType?: string[];
 }
 
 interface MapTabsProps {

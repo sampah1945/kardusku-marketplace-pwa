@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { MapPin, Package } from 'lucide-react';
 
 interface Listing {
-  id: number;
+  id: string;
   title: string;
   location: string;
   distance: string;
@@ -13,6 +13,12 @@ interface Listing {
   category: string;
   date: string;
   imageUrl: string;
+  description?: string;
+  contactInfo?: {
+    phone: string;
+    preferredTime?: string;
+  };
+  cardboardType?: string[];
 }
 
 interface CardboardListingsProps {
