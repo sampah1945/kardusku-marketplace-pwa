@@ -1,17 +1,7 @@
 
 import React from 'react';
 import { MapPin, Weight } from 'lucide-react';
-
-interface Listing {
-  id: number;
-  title: string;
-  location: string;
-  distance: string;
-  weight: number;
-  category: string;
-  date: string;
-  imageUrl: string;
-}
+import { Listing } from '@/types/listing';
 
 interface MapPlaceholderProps {
   listings: Listing[];

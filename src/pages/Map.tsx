@@ -6,6 +6,7 @@ import MapFilters from '@/components/map/MapFilters';
 import MapLegend from '@/components/map/MapLegend';
 import MapTabs from '@/components/map/MapTabs';
 import { useCardboardAds } from '@/hooks/useCardboardAds';
+import { Listing } from '@/types/listing';
 
 const Map = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -15,7 +16,7 @@ const Map = () => {
   const { ads, loading, error } = useCardboardAds();
   
   // Transform ads to match the existing listing interface
-  const transformedListings = ads.map(ad => ({
+  const transformedListings: Listing[] = ads.map(ad => ({
     id: ad.id,
     title: `Kardus ${ad.weight} kg`,
     location: ad.location.address,

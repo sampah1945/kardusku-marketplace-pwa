@@ -1,25 +1,8 @@
-
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MapPin, Package } from 'lucide-react';
-
-interface Listing {
-  id: string;
-  title: string;
-  location: string;
-  distance: string;
-  weight: number;
-  category: string;
-  date: string;
-  imageUrl: string;
-  description?: string;
-  contactInfo?: {
-    phone: string;
-    preferredTime?: string;
-  };
-  cardboardType?: string[];
-}
+import { Listing } from '@/types/listing';
 
 interface CardboardListingsProps {
   listings: Listing[];
