@@ -172,7 +172,7 @@ const Map = () => {
                       className="w-full justify-start"
                       onClick={() => setActiveFilter('large')}
                     >
-                      Besar (>50 kg)
+                      Besar ({'>'}50 kg)
                     </Button>
                   </div>
                 </div>
@@ -233,7 +233,7 @@ const Map = () => {
                 </div>
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-amber-500 rounded-full mr-2"></div>
-                  <span className="text-sm">Kardus Besar (>50 kg)</span>
+                  <span className="text-sm">Kardus Besar ({'>'}50 kg)</span>
                 </div>
               </div>
             </div>
