@@ -9,13 +9,98 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      cardboard_ad_images: {
+        Row: {
+          ad_id: string
+          created_at: string
+          id: string
+          image_order: number
+          image_url: string
+        }
+        Insert: {
+          ad_id: string
+          created_at?: string
+          id?: string
+          image_order?: number
+          image_url: string
+        }
+        Update: {
+          ad_id?: string
+          created_at?: string
+          id?: string
+          image_order?: number
+          image_url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cardboard_ad_images_ad_id_fkey"
+            columns: ["ad_id"]
+            isOneToOne: false
+            referencedRelation: "cardboard_ads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cardboard_ads: {
+        Row: {
+          cardboard_type: string[]
+          contact_phone: string
+          contact_preferred_time: string | null
+          created_at: string
+          description: string | null
+          expires_at: string
+          id: string
+          location_address: string
+          location_lat: number
+          location_lng: number
+          status: string
+          updated_at: string
+          user_id: string
+          weight: number
+        }
+        Insert: {
+          cardboard_type: string[]
+          contact_phone: string
+          contact_preferred_time?: string | null
+          created_at?: string
+          description?: string | null
+          expires_at?: string
+          id?: string
+          location_address: string
+          location_lat: number
+          location_lng: number
+          status?: string
+          updated_at?: string
+          user_id: string
+          weight: number
+        }
+        Update: {
+          cardboard_type?: string[]
+          contact_phone?: string
+          contact_preferred_time?: string | null
+          created_at?: string
+          description?: string | null
+          expires_at?: string
+          id?: string
+          location_address?: string
+          location_lat?: number
+          location_lng?: number
+          status?: string
+          updated_at?: string
+          user_id?: string
+          weight?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      update_expired_ads: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
